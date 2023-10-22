@@ -228,7 +228,7 @@ if (selected == "Parkinsons Prediction"):
     # page title
     st.title("Parkinson's Disease Prediction ")
 
-    st.write('Name - ASCII subject name and recording number')
+    
     st.write('MDVP (Hz) - Average vocal fundamental frequency')
     st.write('MDVP: Fhi (Hz) - Maximum vocal fundamental frequency')
     st.write('MDVP: Flo (Hz) - Minimum vocal fundamental frequency')
