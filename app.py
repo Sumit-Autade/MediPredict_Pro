@@ -76,6 +76,10 @@ if (selected == 'Diabetes Prediction'):
     
 
     st.write('##')
+    
+    st.write('Please enter proper values for better results')
+
+    st.write("##")
         
     
     # getting the input data from the user
@@ -112,18 +116,13 @@ if (selected == 'Diabetes Prediction'):
     # creating a button for Prediction
     
     if st.button('Diabetes Test Result'):
-        if Pregnancies and Glucose and BloodPressure and SkinThickness and Insulin and BMI and DiabetesPedigreeFunction and Age:
-            diab_prediction = diabetes_model.predict([[Pregnancies, Glucose, BloodPressure, SkinThickness, Insulin, BMI, DiabetesPedigreeFunction, Age]])
-
-            if (diab_prediction[0] == 1):
-                diab_diagnosis = 'The person is diabetic'
-            else:
-                diab_diagnosis = 'The person is not diabetic'
+        diab_prediction = diabetes_model.predict([[Pregnancies, Glucose, BloodPressure, SkinThickness, Insulin, BMI, DiabetesPedigreeFunction, Age]])
+        
+        if (diab_prediction[0] == 1):
+          diab_diagnosis = 'The person is diabetic'
         else:
-            diab_diagnosis = 'Please enter all the required values'
-    else:
-        diab_diagnosis = ''
-
+          diab_diagnosis = 'The person is not diabetic'
+        
     st.success(diab_diagnosis)
 
 
@@ -141,7 +140,7 @@ if (selected == 'Heart Disease Prediction'):
 
     st.write("### Patient Information")
     st.write("- Age")
-    st.write("- Sex")
+    st.write("- Sex (1 = male, 0 = female)")
     st.write("- Chest Pain Type (4 values) in range of 0 to 3")
     st.write("- Resting Blood Pressure")
     st.write("- Serum Cholestoral in mg/dl")
@@ -155,6 +154,10 @@ if (selected == 'Heart Disease Prediction'):
     st.write("- Thal: 0 = Normal; 1 = Fixed Defect; 2 = Reversable Defect")
     
     st.write('##')
+
+    st.write('Please enter proper values for better results')
+
+    st.write("##")
     col1, col2, col3 = st.columns(3)
     
     with col1:
@@ -205,19 +208,15 @@ if (selected == 'Heart Disease Prediction'):
     # creating a button for Prediction
     
     if st.button('Heart Disease Test Result'):
-        if age and sex and cp and trestbps and chol and fbs and restecg and thalach and exang and oldpeak and slope and ca and thal:
-            heart_prediction = heart_disease_model.predict([[age, sex, cp, trestbps, chol, fbs, restecg, thalach, exang, oldpeak, slope, ca, thal]])                          
-            
-            if heart_prediction[0] == 1:
-                heart_diagnosis = 'The person is having heart disease'
-            else:
-                heart_diagnosis = 'The person does not have any heart disease'
+        heart_prediction = heart_disease_model.predict([[age, sex, cp, trestbps, chol, fbs, restecg,thalach,exang,oldpeak,slope,ca,thal]])                          
+        
+        if (heart_prediction[0] == 1):
+          heart_diagnosis = 'The person is having heart disease'
         else:
-            heart_diagnosis = 'Please enter all the required values'
-    else:
-        heart_diagnosis = ''
+          heart_diagnosis = 'The person does not have any heart disease'
         
     st.success(heart_diagnosis)
+
 
     
     
@@ -228,7 +227,7 @@ if (selected == "Parkinsons Prediction"):
     # page title
     st.title("Parkinson's Disease Prediction ")
 
-    
+    st.write('Name - ASCII subject name and recording number')
     st.write('MDVP (Hz) - Average vocal fundamental frequency')
     st.write('MDVP: Fhi (Hz) - Maximum vocal fundamental frequency')
     st.write('MDVP: Flo (Hz) - Minimum vocal fundamental frequency')
@@ -255,74 +254,80 @@ if (selected == "Parkinsons Prediction"):
 
     st.write("##")
 
+    st.write('Please enter proper values for better results')
+
+    st.write("##")
+
     
-    col1, col2, col3, col4, col5 = st.columns(5)  
+    col1, col2, col3, col4, col5 = st.columns(5) 
+
+  
     
     with col1:
-        fo = st.number_input('MDVP:Fo(Hz)', min_value=0.0, max_value=349.259, step=0.001)
+        fo = st.number_input('MDVP:Fo(Hz)', min_value=0.0,  step=0.001)
 
     with col2:
-        fhi = st.number_input('MDVP:Fhi(Hz)', min_value=0.0, max_value=349.259, step=0.001)
+        fhi = st.number_input('MDVP:Fhi(Hz)', min_value=0.0,  step=0.001)
 
     with col3:
-        flo = st.number_input('MDVP:Flo(Hz)', min_value=0.0, max_value=349.259, step=0.001)
+        flo = st.number_input('MDVP:Flo(Hz)', min_value=0.0,  step=0.001)
 
     with col4:
-        Jitter_percent = st.number_input('MDVP:Jitter(%)', min_value=0.0, max_value=0.01284, step=0.00001)
+        Jitter_percent = st.number_input('MDVP:Jitter(%)',  min_value= 0.0, step=0.00001)
 
     with col5:
-        Jitter_Abs = st.number_input('MDVP:Jitter(Abs)', min_value=0.0, max_value=0.00011, step=0.00001)
+        Jitter_Abs = st.number_input('MDVP:Jitter(Abs)', min_value=0.0, step=0.00001)
 
     with col1:
-        RAP = st.number_input('MDVP:RAP', min_value=0.0, max_value=0.00655, step=0.00001)
+        RAP = st.number_input('MDVP:RAP', min_value=0.0,  step=0.00001)
 
     with col2:
-        PPQ = st.number_input('MDVP:PPQ', min_value=0.0, max_value=0.00908, step=0.00001)
+        PPQ = st.number_input('MDVP:PPQ', min_value=0.0,  step=0.00001)
 
     with col3:
-        DDP = st.number_input('Jitter:DDP', min_value=0.0, max_value=0.01966, step=0.00001)
+        DDP = st.number_input('Jitter:DDP', min_value=0.0, step=0.00001)
 
     with col4:
-        Shimmer = st.number_input('MDVP:Shimmer', min_value=0.0, max_value=0.06425, step=0.00001)
+        Shimmer = st.number_input('MDVP:Shimmer', min_value=0.0, step=0.00001)
 
     with col5:
-        Shimmer_dB = st.number_input('MDVP:Shimmer(dB)', min_value=0.0, max_value=0.62600, step=0.00001)
+        Shimmer_dB = st.number_input('MDVP:Shimmer(dB)', min_value=0.0, step=0.00001)
 
     with col1:
-        APQ3 = st.number_input('Shimmer:APQ3', min_value=0.0, max_value=0.03490, step=0.00001)
+        APQ3 = st.number_input('Shimmer:APQ3', min_value=0.0, step=0.00001)
 
     with col2:
-        APQ5 = st.number_input('Shimmer:APQ5', min_value=0.0, max_value=0.04825, step=0.00001)
+        APQ5 = st.number_input('Shimmer:APQ5', min_value=0.0,  step=0.00001)
 
     with col3:
-        APQ = st.number_input('MDVP:APQ', min_value=0.0, max_value=0.05767, step=0.00001)
+        APQ = st.number_input('MDVP:APQ', min_value=0.0, step=0.00001)
 
     with col4:
-        DDA = st.number_input('Shimmer:DDA', min_value=0.0, max_value=0.10470, step=0.00001)
+        DDA = st.number_input('Shimmer:DDA', min_value=0.0, step=0.00001)
 
     with col5:
-        NHR = st.number_input('NHR', min_value=0.0, max_value=0.02919, step=0.00001)
+        NHR = st.number_input('NHR', min_value=0.0,step=0.00001)
 
     with col1:
-        HNR = st.number_input('HNR', min_value=0.0, max_value=33.047, step=0.001)
+        HNR = st.number_input('HNR', min_value=0.0,  step=0.001)
 
     with col2:
-        RPDE = st.number_input('RPDE', min_value=0.0, max_value=0.792520, step=0.00001)
+        RPDE = st.number_input('RPDE', min_value=0.0, step=0.00001)
 
     with col3:
-        DFA = st.number_input('DFA', min_value=0.0, max_value=0.792520, step=0.00001)
+        DFA = st.number_input('DFA', min_value=0.0,  step=0.00001)
 
     with col4:
-        spread1 = st.number_input('spread1', min_value=0.0, max_value=2.931070, step=0.00001)
+        spread1 = st.number_input('spread1', min_value=0.0,  step=0.00001)
 
     with col5:
-        spread2 = st.number_input('spread2', min_value=0.0, max_value=0.434326, step=0.00001)
+        spread2 = st.number_input('spread2', min_value=0.0,  step=0.00001)
 
     with col1:
-        D2 = st.number_input('D2', min_value=0.0, max_value=3.109010, step=0.00001)
+        D2 = st.number_input('D2', min_value=0.0,  step=0.00001)
 
     with col2:
-        PPE = st.number_input('PPE', min_value=0.0, max_value=0.430788, step=0.00001)
+        PPE = st.number_input('PPE', min_value=0.0,  step=0.00001)
             
     
     
@@ -331,16 +336,11 @@ if (selected == "Parkinsons Prediction"):
     
     # creating a button for Prediction    
     if st.button("Parkinson's Test Result"):
-        if fo and fhi and flo and Jitter_percent and Jitter_Abs and RAP and PPQ and DDP and Shimmer and Shimmer_dB and APQ3 and APQ5 and APQ and DDA and NHR and HNR and RPDE and DFA and spread1 and spread2 and D2 and PPE:
-            parkinsons_prediction = parkinsons_model.predict([[fo, fhi, flo, Jitter_percent, Jitter_Abs, RAP, PPQ, DDP, Shimmer, Shimmer_dB, APQ3, APQ5, APQ, DDA, NHR, HNR, RPDE, DFA, spread1, spread2, D2, PPE]])                          
-            
-            if parkinsons_prediction[0] == 0:
-                parkinsons_diagnosis = "The person does not have Parkinson's disease"
-            else:
-                parkinsons_diagnosis = "The person has Parkinson's disease"
+        parkinsons_prediction = parkinsons_model.predict([[fo, fhi, flo, Jitter_percent, Jitter_Abs, RAP, PPQ,DDP,Shimmer,Shimmer_dB,APQ3,APQ5,APQ,DDA,NHR,HNR,RPDE,DFA,spread1,spread2,D2,PPE]])                          
+        
+        if (parkinsons_prediction[0] == 0):
+          parkinsons_diagnosis = "The person does not have Parkinson's disease"
         else:
-            parkinsons_diagnosis = "Please enter all the required values"
-    else:
-        parkinsons_diagnosis = ""
+          parkinsons_diagnosis = "The person  have Parkinson's disease"
         
     st.success(parkinsons_diagnosis)
