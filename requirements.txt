@@ -1,6 +1,5 @@
 streamlit 
 streamlit_option_menu
-pickle
 sklearn
 numpy 
 pandas
